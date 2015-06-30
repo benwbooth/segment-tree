@@ -1,5 +1,7 @@
 use std::cell::Cell;
-use std::num::Int;
+
+extern crate num;
+use num::traits::PrimInt;
 
 pub struct SegmentTreeNode<T:Copy>
 {
@@ -9,7 +11,7 @@ pub struct SegmentTreeNode<T:Copy>
     pub children: Option<(Box<SegmentTreeNode<T>>, Box<SegmentTreeNode<T>>)>
 }
  
-impl<T:Int> SegmentTreeNode<T>{
+impl<T:PrimInt> SegmentTreeNode<T>{
     pub fn new(
         lower_bound:i32,
         upper_bound:i32) -> SegmentTreeNode<T>

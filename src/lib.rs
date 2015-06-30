@@ -1,7 +1,9 @@
 #![crate_type = "lib"]
 #![cfg_attr(test, feature(test))]
 
-use std::num::Int;
+extern crate num;
+use num::traits::PrimInt;
+
 use std::marker::{PhantomData,  Sized}; 
 use node::SegmentTreeNode;
 use ops::SegmentTreeOps;
@@ -16,7 +18,7 @@ pub struct SegmentTree<T: Sized+Copy, F: Sized>{
     f: PhantomData<F>
 }
  
-impl<T: Int, F: SegmentTreeOps<T>> SegmentTree<T, F>
+impl<T: PrimInt, F: SegmentTreeOps<T>> SegmentTree<T, F>
 {
     pub fn new(lower_bound: i32, upper_bound: i32) -> SegmentTree<T, F> 
     {

@@ -1,5 +1,7 @@
 use std::marker::{PhantomData,  Sized}; 
-use std::num::Int;
+
+extern crate num;
+use num::traits::PrimInt;
 
 pub trait SegmentTreeOps<T: Sized>: Sized{
     fn get(accumulator: T, node_value: T) -> T;
@@ -7,11 +9,11 @@ pub trait SegmentTreeOps<T: Sized>: Sized{
     fn default_acc() -> T;
 }
 
-pub struct add_ops<T:Int>{
+pub struct AddOps<T:PrimInt>{
     f: PhantomData<T>,
 }
 
-impl<T:Int> SegmentTreeOps<T> for add_ops<T>{
+impl<T:PrimInt> SegmentTreeOps<T> for AddOps<T>{
     fn get(accumulator: T, node_value: T) -> T{
         accumulator + node_value
     }
@@ -24,11 +26,11 @@ impl<T:Int> SegmentTreeOps<T> for add_ops<T>{
 }
 
 
-pub struct max_ops<T:Int>{
+pub struct MaxOps<T:PrimInt>{
     f: PhantomData<T>,
 }
 
-impl<T:Int> SegmentTreeOps<T> for max_ops<T>{
+impl<T:PrimInt> SegmentTreeOps<T> for MaxOps<T>{
     fn get(accumulator: T, node_value: T) -> T{
         if accumulator < node_value{
             node_value
@@ -48,11 +50,11 @@ impl<T:Int> SegmentTreeOps<T> for max_ops<T>{
     }
 }
 
-pub struct min_ops<T:Int>{
+pub struct MinOps<T:PrimInt>{
     f: PhantomData<T>,
 }
 
-impl<T:Int> SegmentTreeOps<T> for min_ops<T>{
+impl<T:PrimInt> SegmentTreeOps<T> for MinOps<T>{
     fn get(accumulator: T, node_value: T) -> T{
         if accumulator > node_value{
             node_value

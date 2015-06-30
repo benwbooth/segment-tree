@@ -7,3 +7,5 @@ authors = ["jaeju kim <jjkim@arcs.skku.edu>"]
 description = "interval update and query in O(lg n) time"
 repository = "https://github.com/azurespace/segment-tree"
 
+[dependencies]
+num = "0.1.25"
